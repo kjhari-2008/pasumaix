@@ -35,7 +35,6 @@
             line-height: 1.6;
         }
 
-        /* ===== HEADER / OPERATIONAL ALERT ===== */
         .header-alert {
             background: linear-gradient(135deg, #dbeafe 0%, #ecfdf5 100%);
             border-bottom: 1px solid var(--border-color);
@@ -83,14 +82,12 @@
             text-decoration: underline;
         }
 
-        /* ===== SECTIONS CONTAINER ===== */
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 40px;
         }
 
-        /* ===== SECTION 1: HERO & FORM ===== */
         .hero-section {
             padding: 80px 40px;
             background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
@@ -216,7 +213,6 @@
             color: var(--text-light);
         }
 
-        /* ===== FORM SECTION ===== */
         .form-section {
             background: var(--bg-white);
             border: 1px solid var(--border-color);
@@ -308,7 +304,6 @@
             margin-top: 4px;
         }
 
-        /* Upload Input */
         .upload-area {
             border: 2px dashed var(--border-color);
             border-radius: var(--radius-lg);
@@ -361,7 +356,6 @@
             color: var(--success-color);
         }
 
-        /* Text Inputs */
         input[type="text"],
         input[type="tel"],
         input[type="number"],
@@ -397,7 +391,6 @@
             gap: 20px;
         }
 
-        /* Service Selection */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -440,7 +433,6 @@
             opacity: 0.9;
         }
 
-        /* Copies Counter */
         .counter {
             display: flex;
             align-items: center;
@@ -484,7 +476,6 @@
             outline: none;
         }
 
-        /* Price Summary */
         .price-summary {
             background: var(--bg-light);
             padding: 24px;
@@ -516,7 +507,6 @@
             color: var(--text-dark);
         }
 
-        /* Payment Button */
         .btn {
             padding: 14px 32px;
             border: none;
@@ -553,7 +543,6 @@
             transform: none;
         }
 
-        /* ===== SERVICES GRID SECTION ===== */
         .services-section {
             padding: 80px 40px;
             background: var(--bg-white);
@@ -676,7 +665,6 @@
             gap: 4px;
         }
 
-        /* ===== HOW IT WORKS SECTION ===== */
         .how-section {
             padding: 80px 40px;
             background: linear-gradient(135deg, rgba(37, 99, 235, 0.02) 0%, rgba(16, 185, 129, 0.02) 100%);
@@ -740,7 +728,6 @@
             gap: 4px;
         }
 
-        /* ===== CONTACT SECTION ===== */
         .contact-section {
             padding: 80px 40px;
             background: var(--bg-white);
@@ -778,13 +765,6 @@
             padding: 24px;
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
-        }
-
-        .contact-card__icon {
-            width: 24px;
-            height: 24px;
-            margin-bottom: 12px;
-            opacity: 0.7;
         }
 
         .contact-card__label {
@@ -827,7 +807,6 @@
             border: 1px solid var(--border-color);
         }
 
-        /* ===== ALERTS ===== */
         .alert {
             padding: 16px;
             border-radius: var(--radius-md);
@@ -852,7 +831,6 @@
             border: 1px solid #fecaca;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero-container {
                 grid-template-columns: 1fr;
@@ -937,7 +915,6 @@
             }
         }
 
-        /* Status indicators */
         .file-uploaded {
             color: var(--success-color);
             font-weight: 600;
@@ -958,9 +935,9 @@
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Header Alert -->
     <div class="header-alert">
         <div class="header-alert__content">
             <div>
@@ -970,6 +947,7 @@
                 </span>
                 — Quality prints in minutes, not hours. Open 6 AM–11 PM daily (Mon–Sat).
             </div>
+
             <div class="header-alert__links">
                 <a href="tel:7558191971" class="header-alert__link">Call 7558191971</a>
                 <span style="color: #d1d5db;">|</span>
@@ -978,18 +956,25 @@
         </div>
     </div>
 
-    <!-- Section 1: Hero & Form -->
     <div class="hero-section">
         <div class="hero-container">
-            <!-- Left Column -->
+
             <div class="hero-left">
                 <div class="hero-badge">
                     ⭐ Skip the Queue
                 </div>
-                <h1 class="hero-h1">Skip the Shop Queue. Order Your Prints Online.</h1>
-                <p class="hero-description">Send your files directly to Pasumai Xerox before you arrive. Pick up ready prints in minutes right opposite Mannachanallur Taluk Office.</p>
+
+                <h1 class="hero-h1">
+                    Skip the Shop Queue. Order Your Prints Online.
+                </h1>
+
+                <p class="hero-description">
+                    Send your files directly to Pasumai Xerox before you arrive.
+                    Pick up ready prints in minutes right opposite Mannachanallur Taluk Office.
+                </p>
 
                 <div class="trust-badges">
+
                     <div class="trust-badge">
                         <div class="trust-badge__icon">⚡</div>
                         <div class="trust-badge__content">
@@ -997,6 +982,7 @@
                             <p>Ready in minutes</p>
                         </div>
                     </div>
+
                     <div class="trust-badge">
                         <div class="trust-badge__icon">💳</div>
                         <div class="trust-badge__content">
@@ -1004,13 +990,19 @@
                             <p>UPI/GPay accepted</p>
                         </div>
                     </div>
+
                     <div class="trust-badge">
                         <div class="trust-badge__icon">✅</div>
                         <div class="trust-badge__content">
                             <h4>Quality Assured</h4>
-                            <p><a href="#" style="color: var(--primary-color); text-decoration: none;">See samples</a></p>
+                            <p>
+                                <a href="#" style="color: var(--primary-color); text-decoration: none;">
+                                    See samples
+                                </a>
+                            </p>
                         </div>
                     </div>
+
                     <div class="trust-badge">
                         <div class="trust-badge__icon">📞</div>
                         <div class="trust-badge__content">
@@ -1018,20 +1010,27 @@
                             <p>WhatsApp anytime</p>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="insight-card">
                     <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect fill='%232563eb' width='96' height='96'/%3E%3Ctext x='50%' y='50%' text-anchor='middle' dy='0.3em' font-size='48' fill='white' font-weight='bold'%3E✓%3C/text%3E%3C/svg%3E" alt="Real customer insight">
+
                     <div class="insight-card__content">
                         <h4>From Harini, Mannachanallur</h4>
-                        <p>"I saved 30 minutes by ordering online. My resume was print-ready when I arrived!"</p>
-                        <div class="insight-card__footer">⭐⭐⭐⭐⭐ Verified Customer</div>
+                        <p>
+                            "I saved 30 minutes by ordering online. My resume was print-ready when I arrived!"
+                        </p>
+                        <div class="insight-card__footer">
+                            ⭐⭐⭐⭐⭐ Verified Customer
+                        </div>
                     </div>
                 </div>
+
             </div>
 
-            <!-- Right Column: Form -->
             <div class="form-section">
+
                 <div class="form-header">
                     <div class="form-header__title">
                         <div class="form-step-number">1</div>
@@ -1040,443 +1039,986 @@
                             <p>Complete 5 simple steps</p>
                         </div>
                     </div>
-                    <div class="form-progress">Steps 1 of 5</div>
+
+                    <div class="form-progress">
+                        Steps 1 of 5
+                    </div>
                 </div>
 
                 <form id="orderForm">
-                    <!-- Step 1: Upload Document -->
+
                     <div class="form-group">
+
                         <div class="form-group__label">
                             <div class="form-group__label-number">1</div>
-                            <div class="form-group__label-text">Upload Your Document (Optional)</div>
+                            <div class="form-group__label-text">
+                                Upload Your Document (Optional)
+                            </div>
                         </div>
-                        <div class="upload-area" onclick="document.getElementById('fileInput').click();">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+                        <div class="upload-area"
+                             onclick="document.getElementById('fileInput').click();">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                 <polyline points="17 8 12 3 7 8"></polyline>
                                 <line x1="12" y1="3" x2="12" y2="15"></line>
                             </svg>
-                            <p><strong>Click to upload</strong> or drag and drop</p>
-                            <p class="upload-area__hint">PDF, Word, Image, Excel (Max 10MB)</p>
-                            <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx" onchange="handleFileUpload(event)">
+
+                            <p>
+                                <strong>Click to upload</strong> or drag and drop
+                            </p>
+
+                            <p class="upload-area__hint">
+                                PDF, Word, Image, Excel (Max 10MB)
+                            </p>
+
+                            <input
+                                type="file"
+                                id="fileInput"
+                                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
+                                onchange="handleFileUpload(event)"
+                            >
                         </div>
-                        <div id="fileItem" class="file-item" style="display: none;">
-                            <span class="file-item__name" id="fileName"></span>
-                            <button type="button" onclick="clearFile()" style="background: none; border: none; cursor: pointer; color: var(--error-color);">✕</button>
+
+                        <div id="fileItem"
+                             class="file-item"
+                             style="display: none;">
+
+                            <span class="file-item__name"
+                                  id="fileName"></span>
+
+                            <button
+                                type="button"
+                                onclick="clearFile()"
+                                style="background: none; border: none; cursor: pointer; color: var(--error-color);">
+                                ✕
+                            </button>
                         </div>
+
                     </div>
 
-                    <!-- Step 2 & 3: Name & Phone -->
                     <div class="form-group">
+
                         <div class="two-column">
+
                             <div>
                                 <div class="form-group__label">
                                     <div class="form-group__label-number">2</div>
-                                    <div class="form-group__label-text">Your Full Name</div>
+                                    <div class="form-group__label-text">
+                                        Your Full Name
+                                    </div>
                                 </div>
-                                <input type="text" id="customerName" name="name" placeholder="Enter your full name" required>
+
+                                <input
+                                    type="text"
+                                    id="customerName"
+                                    name="name"
+                                    placeholder="Enter your full name"
+                                    required
+                                >
                             </div>
+
                             <div>
                                 <div class="form-group__label">
                                     <div class="form-group__label-number">3</div>
-                                    <div class="form-group__label-text">Phone Number</div>
+                                    <div class="form-group__label-text">
+                                        Phone Number
+                                    </div>
                                 </div>
-                                <input type="tel" id="customerPhone" name="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+
+                                <input
+                                    type="tel"
+                                    id="customerPhone"
+                                    name="phone"
+                                    placeholder="10-digit mobile number"
+                                    pattern="[0-9]{10}"
+                                    required
+                                >
                             </div>
+
                         </div>
+
                     </div>
 
-                    <!-- Step 4: Service Selection -->
                     <div class="form-group">
+
                         <div class="form-group__label">
                             <div class="form-group__label-number">4</div>
-                            <div class="form-group__label-text">Select Your Service</div>
+                            <div class="form-group__label-text">
+                                Select Your Service
+                            </div>
                         </div>
+
                         <div class="services-grid">
-                            <button type="button" class="service-btn" data-service="Xerox" data-price="1" onclick="selectService(this)">
+
+                            <button type="button" class="service-btn"
+                                    data-service="Xerox"
+                                    data-price="1"
+                                    onclick="selectService(this)">
                                 <span class="service-btn__name">Xerox</span>
                                 <span class="service-btn__price">₹1</span>
                             </button>
-                            <button type="button" class="service-btn" data-service="B&W Printing" data-price="2" onclick="selectService(this)">
+
+                            <button type="button" class="service-btn"
+                                    data-service="B&W Printing"
+                                    data-price="2"
+                                    onclick="selectService(this)">
                                 <span class="service-btn__name">B&W Printing</span>
                                 <span class="service-btn__price">₹2</span>
                             </button>
-                            <button type="button" class="service-btn" data-service="Colour Printing" data-price="7" onclick="selectService(this)">
+
+                            <button type="button" class="service-btn"
+                                    data-service="Colour Printing"
+                                    data-price="7"
+                                    onclick="selectService(this)">
                                 <span class="service-btn__name">Colour Printing</span>
                                 <span class="service-btn__price">₹7</span>
                             </button>
-                            <button type="button" class="service-btn" data-service="Scanning" data-price="20" onclick="selectService(this)">
+
+                            <button type="button" class="service-btn"
+                                    data-service="Scanning"
+                                    data-price="20"
+                                    onclick="selectService(this)">
                                 <span class="service-btn__name">Scanning</span>
                                 <span class="service-btn__price">₹20</span>
                             </button>
-                            <button type="button" class="service-btn" data-service="Lamination" data-price="30" onclick="selectService(this)">
+
+                            <button type="button" class="service-btn"
+                                    data-service="Lamination"
+                                    data-price="30"
+                                    onclick="selectService(this)">
                                 <span class="service-btn__name">Lamination</span>
                                 <span class="service-btn__price">₹30</span>
                             </button>
-                            <button type="button" class="service-btn" data-service="Spiral Binding" data-price="40" onclick="selectService(this)">
+
+                            <button type="button" class="service-btn"
+                                    data-service="Spiral Binding"
+                                    data-price="40"
+                                    onclick="selectService(this)">
                                 <span class="service-btn__name">Spiral Binding</span>
                                 <span class="service-btn__price">₹40</span>
                             </button>
-                            <button type="button" class="service-btn" data-service="Photo Printing" data-price="80" onclick="selectService(this)">
+
+                            <button type="button" class="service-btn"
+                                    data-service="Photo Printing"
+                                    data-price="80"
+                                    onclick="selectService(this)">
                                 <span class="service-btn__name">Photo Printing</span>
                                 <span class="service-btn__price">₹80</span>
                             </button>
-                            <button type="button" class="service-btn" data-service="Passport-size Photos" data-price="12" onclick="selectService(this)">
+
+                            <button type="button" class="service-btn"
+                                    data-service="Passport-size Photos"
+                                    data-price="12"
+                                    onclick="selectService(this)">
                                 <span class="service-btn__name">Passport Photos</span>
                                 <span class="service-btn__price">₹12</span>
                             </button>
-                            <button type="button" class="service-btn" data-service="Resume/CV Printing" data-price="60" onclick="selectService(this)">
+
+                            <button type="button" class="service-btn"
+                                    data-service="Resume/CV Printing"
+                                    data-price="60"
+                                    onclick="selectService(this)">
                                 <span class="service-btn__name">Resume/CV</span>
                                 <span class="service-btn__price">₹60</span>
                             </button>
-                            <button type="button" class="service-btn" data-service="Document Typing" data-price="120" onclick="selectService(this)">
+
+                            <button type="button" class="service-btn"
+                                    data-service="Document Typing"
+                                    data-price="120"
+                                    onclick="selectService(this)">
                                 <span class="service-btn__name">Document Typing</span>
                                 <span class="service-btn__price">₹120</span>
                             </button>
-                            <button type="button" class="service-btn" data-service="Online Application/Form Filling" data-price="50" onclick="selectService(this)">
+
+                            <button type="button" class="service-btn"
+                                    data-service="Online Application/Form Filling"
+                                    data-price="50"
+                                    onclick="selectService(this)">
                                 <span class="service-btn__name">Online App/Form</span>
                                 <span class="service-btn__price">₹50</span>
                             </button>
+
                         </div>
+
                     </div>
 
-                    <!-- Step 5: Copies & Preferences -->
                     <div class="form-group">
+
                         <div class="two-column">
+
                             <div>
+
                                 <div class="form-group__label">
                                     <div class="form-group__label-number">5</div>
-                                    <div class="form-group__label-text">Number of Copies</div>
+                                    <div class="form-group__label-text">
+                                        Number of Copies
+                                    </div>
                                 </div>
+
                                 <div class="counter">
-                                    <button type="button" class="counter__btn" onclick="decrementCopies()">−</button>
-                                    <input type="number" id="copiesInput" class="counter__input" value="1" min="1" onchange="calculatePrice()">
-                                    <button type="button" class="counter__btn" onclick="incrementCopies()">+</button>
+
+                                    <button type="button"
+                                            class="counter__btn"
+                                            onclick="decrementCopies()">
+                                        −
+                                    </button>
+
+                                    <input
+                                        type="number"
+                                        id="copiesInput"
+                                        class="counter__input"
+                                        value="1"
+                                        min="1"
+                                        onchange="calculatePrice()"
+                                    >
+
+                                    <button type="button"
+                                            class="counter__btn"
+                                            onclick="incrementCopies()">
+                                        +
+                                    </button>
+
                                 </div>
+
                             </div>
+
                             <div>
-                                <div class="form-group__label">Printing Sides</div>
-                                <select id="printingSides" style="padding: 12px 16px;">
-                                    <option value="Single Sided">Single Sided</option>
-                                    <option value="Double Sided">Double Sided</option>
+
+                                <div class="form-group__label">
+                                    Printing Sides
+                                </div>
+
+                                <select id="printingSides"
+                                        style="padding: 12px 16px;">
+
+                                    <option value="Single Sided">
+                                        Single Sided
+                                    </option>
+
+                                    <option value="Double Sided">
+                                        Double Sided
+                                    </option>
+
                                 </select>
+
                             </div>
+
                         </div>
+
                     </div>
 
                     <div class="form-group">
-                        <div class="form-group__label">Special Instructions (Optional)</div>
-                        <textarea id="instructions" placeholder="e.g., Staple, 80 GSM, urgent..." style="padding: 12px 16px;"></textarea>
+
+                        <div class="form-group__label">
+                            Special Instructions (Optional)
+                        </div>
+
+                        <textarea
+                            id="instructions"
+                            placeholder="e.g., Staple, 80 GSM, urgent..."
+                            style="padding: 12px 16px;">
+                        </textarea>
+
                     </div>
 
-                    <!-- Price Summary & Payment -->
                     <div class="price-summary">
+
                         <div class="price-summary__row">
-                            <span class="price-summary__label">Selected Service</span>
-                            <span class="price-summary__value" id="summaryService">None</span>
+                            <span class="price-summary__label">
+                                Selected Service
+                            </span>
+
+                            <span class="price-summary__value"
+                                  id="summaryService">
+                                None
+                            </span>
                         </div>
+
                         <div class="price-summary__row">
-                            <span class="price-summary__label">Per Copy</span>
-                            <span class="price-summary__value">₹<span id="summaryPrice">0</span></span>
+
+                            <span class="price-summary__label">
+                                Per Copy
+                            </span>
+
+                            <span class="price-summary__value">
+                                ₹<span id="summaryPrice">0</span>
+                            </span>
+
                         </div>
+
                         <div class="price-summary__row">
-                            <span class="price-summary__label">Quantity</span>
-                            <span class="price-summary__value"><span id="summaryQuantity">1</span> copies</span>
+
+                            <span class="price-summary__label">
+                                Quantity
+                            </span>
+
+                            <span class="price-summary__value">
+                                <span id="summaryQuantity">1</span> copies
+                            </span>
+
                         </div>
+
                         <div class="price-summary__row price-summary__row--total">
-                            <span class="price-summary__label">Estimated Total</span>
-                            <span class="price-summary__value">₹<span id="totalAmount">0</span></span>
+
+                            <span class="price-summary__label">
+                                Estimated Total
+                            </span>
+
+                            <span class="price-summary__value">
+                                ₹<span id="totalAmount">0</span>
+                            </span>
+
                         </div>
+
                     </div>
 
-                    <button type="button" class="btn btn-primary" id="paymentBtn" onclick="initiatePayment()" disabled>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="paymentBtn"
+                        onclick="initiatePayment()"
+                        disabled>
                         💳 Pay with UPI/GPay
                     </button>
 
-                    <div class="alert alert-success" id="successAlert"></div>
-                    <div class="alert alert-error" id="errorAlert"></div>
+                    <div class="alert alert-success"
+                         id="successAlert">
+                    </div>
+
+                    <div class="alert alert-error"
+                         id="errorAlert">
+                    </div>
+
                 </form>
+
             </div>
+
         </div>
     </div>
 
-    <!-- Section 2: Services Grid -->
     <div class="services-section">
+
         <div class="container">
+
             <div class="section-header">
-                <div class="section-badge">💼 Complete Rate Card</div>
-                <h2 class="section-h2">Transparent Pricing for Every Service</h2>
-                <p class="section-description">Quality printing and document services at competitive rates. All prices shown are per copy (or per item for fixed-rate services).</p>
+
+                <div class="section-badge">
+                    💼 Complete Rate Card
+                </div>
+
+                <h2 class="section-h2">
+                    Transparent Pricing for Every Service
+                </h2>
+
+                <p class="section-description">
+                    Quality printing and document services at competitive rates.
+                    All prices shown are per copy (or per item for fixed-rate services).
+                </p>
+
             </div>
+
             <div class="services-full-grid">
+
                 <div class="service-card">
                     <div class="service-card__content">
+
                         <div class="service-card__header">
                             <div class="service-card__icon">📄</div>
                             <div class="service-card__price">₹1</div>
                         </div>
+
                         <h3 class="service-card__name">Xerox</h3>
-                        <p class="service-card__description">Professional photocopies on standard white paper. Perfect for documents, forms, and everyday copying needs.</p>
+
+                        <p class="service-card__description">
+                            Professional photocopies on standard white paper.
+                            Perfect for documents, forms, and everyday copying needs.
+                        </p>
+
                         <div class="service-card__footer">
                             <span>per copy</span>
-                            <a href="#" class="service-card__link" onclick="selectServiceFromCard('Xerox', '1'); return false;">Select →</a>
+                            <a href="#"
+                               class="service-card__link"
+                               onclick="selectServiceFromCard('Xerox', '1'); return false;">
+                                Select →
+                            </a>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card__content">
+
                         <div class="service-card__header">
                             <div class="service-card__icon">🖨️</div>
                             <div class="service-card__price">₹2</div>
                         </div>
+
                         <h3 class="service-card__name">B&W Printing</h3>
-                        <p class="service-card__description">High-quality black and white prints from your digital files. Crystal-clear text and images on premium paper.</p>
+
+                        <p class="service-card__description">
+                            High-quality black and white prints from your digital files.
+                            Crystal-clear text and images on premium paper.
+                        </p>
+
                         <div class="service-card__footer">
                             <span>per copy</span>
-                            <a href="#" class="service-card__link" onclick="selectServiceFromCard('B&W Printing', '2'); return false;">Select →</a>
+                            <a href="#"
+                               class="service-card__link"
+                               onclick="selectServiceFromCard('B&W Printing', '2'); return false;">
+                                Select →
+                            </a>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card__content">
+
                         <div class="service-card__header">
                             <div class="service-card__icon">🎨</div>
                             <div class="service-card__price">₹7</div>
                         </div>
+
                         <h3 class="service-card__name">Colour Printing</h3>
-                        <p class="service-card__description">Vibrant full-colour prints ideal for marketing materials, presentations, and creative projects. Premium quality guaranteed.</p>
+
+                        <p class="service-card__description">
+                            Vibrant full-colour prints ideal for marketing materials,
+                            presentations, and creative projects. Premium quality guaranteed.
+                        </p>
+
                         <div class="service-card__footer">
                             <span>per copy</span>
-                            <a href="#" class="service-card__link" onclick="selectServiceFromCard('Colour Printing', '7'); return false;">Select →</a>
+                            <a href="#"
+                               class="service-card__link"
+                               onclick="selectServiceFromCard('Colour Printing', '7'); return false;">
+                                Select →
+                            </a>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card__content">
+
                         <div class="service-card__header">
                             <div class="service-card__icon">📱</div>
                             <div class="service-card__price">₹20</div>
                         </div>
+
                         <h3 class="service-card__name">Scanning</h3>
-                        <p class="service-card__description">Convert physical documents into high-resolution digital files. Secure and quick. Perfect for record-keeping.</p>
+
+                        <p class="service-card__description">
+                            Convert physical documents into high-resolution digital files.
+                            Secure and quick. Perfect for record-keeping.
+                        </p>
+
                         <div class="service-card__footer">
                             <span>per document</span>
-                            <a href="#" class="service-card__link" onclick="selectServiceFromCard('Scanning', '20'); return false;">Select →</a>
+                            <a href="#"
+                               class="service-card__link"
+                               onclick="selectServiceFromCard('Scanning', '20'); return false;">
+                                Select →
+                            </a>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card__content">
+
                         <div class="service-card__header">
                             <div class="service-card__icon">🛡️</div>
                             <div class="service-card__price">₹30</div>
                         </div>
+
                         <h3 class="service-card__name">Lamination</h3>
-                        <p class="service-card__description">Protect your documents with a glossy or matte finish. Waterproof, durable, and long-lasting protection.</p>
+
+                        <p class="service-card__description">
+                            Protect your documents with a glossy or matte finish.
+                            Waterproof, durable, and long-lasting protection.
+                        </p>
+
                         <div class="service-card__footer">
                             <span>per page</span>
-                            <a href="#" class="service-card__link" onclick="selectServiceFromCard('Lamination', '30'); return false;">Select →</a>
+                            <a href="#"
+                               class="service-card__link"
+                               onclick="selectServiceFromCard('Lamination', '30'); return false;">
+                                Select →
+                            </a>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card__content">
+
                         <div class="service-card__header">
                             <div class="service-card__icon">📎</div>
                             <div class="service-card__price">₹40</div>
                         </div>
+
                         <h3 class="service-card__name">Spiral Binding</h3>
-                        <p class="service-card__description">Professional binding for reports, presentations, and theses. Durable and aesthetically pleasing finishes.</p>
+
+                        <p class="service-card__description">
+                            Professional binding for reports, presentations, and theses.
+                            Durable and aesthetically pleasing finishes.
+                        </p>
+
                         <div class="service-card__footer">
                             <span>per document</span>
-                            <a href="#" class="service-card__link" onclick="selectServiceFromCard('Spiral Binding', '40'); return false;">Select →</a>
+                            <a href="#"
+                               class="service-card__link"
+                               onclick="selectServiceFromCard('Spiral Binding', '40'); return false;">
+                                Select →
+                            </a>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card__content">
+
                         <div class="service-card__header">
                             <div class="service-card__icon">📷</div>
                             <div class="service-card__price">₹80</div>
                         </div>
+
                         <h3 class="service-card__name">Photo Printing</h3>
-                        <p class="service-card__description">Professional-grade photo prints on premium glossy or matte paper. Perfect for memories and displays.</p>
+
+                        <p class="service-card__description">
+                            Professional-grade photo prints on premium glossy or matte paper.
+                            Perfect for memories and displays.
+                        </p>
+
                         <div class="service-card__footer">
                             <span>per print</span>
-                            <a href="#" class="service-card__link" onclick="selectServiceFromCard('Photo Printing', '80'); return false;">Select →</a>
+                            <a href="#"
+                               class="service-card__link"
+                               onclick="selectServiceFromCard('Photo Printing', '80'); return false;">
+                                Select →
+                            </a>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card__content">
+
                         <div class="service-card__header">
                             <div class="service-card__icon">👤</div>
                             <div class="service-card__price">₹12</div>
                         </div>
-                        <h3 class="service-card__name">Passport-size Photos</h3>
-                        <p class="service-card__description">Professional 2x2 passport photos meeting all government specifications. Quick turnaround guaranteed.</p>
+
+                        <h3 class="service-card__name">
+                            Passport-size Photos
+                        </h3>
+
+                        <p class="service-card__description">
+                            Professional 2x2 passport photos meeting all government specifications.
+                            Quick turnaround guaranteed.
+                        </p>
+
                         <div class="service-card__footer">
                             <span>per 4 photos</span>
-                            <a href="#" class="service-card__link" onclick="selectServiceFromCard('Passport-size Photos', '12'); return false;">Select →</a>
+
+                            <a href="#"
+                               class="service-card__link"
+                               onclick="selectServiceFromCard('Passport-size Photos', '12'); return false;">
+                                Select →
+                            </a>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card__content">
+
                         <div class="service-card__header">
                             <div class="service-card__icon">📄</div>
                             <div class="service-card__price">₹60</div>
                         </div>
-                        <h3 class="service-card__name">Resume/CV Printing</h3>
-                        <p class="service-card__description">Professionally printed resumes on premium paper. Make a strong first impression with quality printing.</p>
+
+                        <h3 class="service-card__name">
+                            Resume/CV Printing
+                        </h3>
+
+                        <p class="service-card__description">
+                            Professionally printed resumes on premium paper.
+                            Make a strong first impression with quality printing.
+                        </p>
+
                         <div class="service-card__footer">
                             <span>per set</span>
-                            <a href="#" class="service-card__link" onclick="selectServiceFromCard('Resume/CV Printing', '60'); return false;">Select →</a>
+
+                            <a href="#"
+                               class="service-card__link"
+                               onclick="selectServiceFromCard('Resume/CV Printing', '60'); return false;">
+                                Select →
+                            </a>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card__content">
+
                         <div class="service-card__header">
                             <div class="service-card__icon">⌨️</div>
                             <div class="service-card__price">₹120</div>
                         </div>
-                        <h3 class="service-card__name">Document Typing</h3>
-                        <p class="service-card__description">Professional document typing and formatting. From letters to applications, we handle all your typing needs.</p>
+
+                        <h3 class="service-card__name">
+                            Document Typing
+                        </h3>
+
+                        <p class="service-card__description">
+                            Professional document typing and formatting.
+                            From letters to applications, we handle all your typing needs.
+                        </p>
+
                         <div class="service-card__footer">
                             <span>per page</span>
-                            <a href="#" class="service-card__link" onclick="selectServiceFromCard('Document Typing', '120'); return false;">Select →</a>
+
+                            <a href="#"
+                               class="service-card__link"
+                               onclick="selectServiceFromCard('Document Typing', '120'); return false;">
+                                Select →
+                            </a>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card__content">
+
                         <div class="service-card__header">
                             <div class="service-card__icon">📋</div>
                             <div class="service-card__price">₹50</div>
                         </div>
-                        <h3 class="service-card__name">Online Application/Form Filling</h3>
-                        <p class="service-card__description">Expert assistance with online forms, applications, and digital submissions. Accurate and timely completion.</p>
+
+                        <h3 class="service-card__name">
+                            Online Application/Form Filling
+                        </h3>
+
+                        <p class="service-card__description">
+                            Expert assistance with online forms, applications,
+                            and digital submissions. Accurate and timely completion.
+                        </p>
+
                         <div class="service-card__footer">
                             <span>per form</span>
-                            <a href="#" class="service-card__link" onclick="selectServiceFromCard('Online Application/Form Filling', '50'); return false;">Select →</a>
+
+                            <a href="#"
+                               class="service-card__link"
+                               onclick="selectServiceFromCard('Online Application/Form Filling', '50'); return false;">
+                                Select →
+                            </a>
                         </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <!-- Section 3: How It Works -->
     <div class="how-section">
+
         <div class="container">
+
             <div class="how-header">
-                <div class="section-badge">⚡ 4-Step Process</div>
-                <h2 class="section-h2">How It Works</h2>
-                <p class="section-description">From order to pickup — it's simple, fast, and hassle-free. Get your prints ready in minutes.</p>
+
+                <div class="section-badge">
+                    ⚡ 4-Step Process
+                </div>
+
+                <h2 class="section-h2">
+                    How It Works
+                </h2>
+
+                <p class="section-description">
+                    From order to pickup — it's simple, fast, and hassle-free.
+                    Get your prints ready in minutes.
+                </p>
+
             </div>
+
             <div class="steps-grid">
+
                 <div class="step-card">
                     <div class="step-card__icon">1️⃣</div>
-                    <h3 class="step-card__title">Order Online</h3>
-                    <p class="step-card__description">Upload your files, select service, and pay instantly through UPI/GPay. Takes less than 2 minutes.</p>
-                    <div class="step-card__time">⏱️ 2 minutes</div>
+
+                    <h3 class="step-card__title">
+                        Order Online
+                    </h3>
+
+                    <p class="step-card__description">
+                        Upload your files, select service, and pay instantly through UPI/GPay.
+                        Takes less than 2 minutes.
+                    </p>
+
+                    <div class="step-card__time">
+                        ⏱️ 2 minutes
+                    </div>
                 </div>
+
                 <div class="step-card">
+
                     <div class="step-card__icon">2️⃣</div>
-                    <h3 class="step-card__title">Processing</h3>
-                    <p class="step-card__description">Our team immediately starts processing your order with highest quality standards and precision.</p>
-                    <div class="step-card__time">⏱️ 5-10 minutes</div>
+
+                    <h3 class="step-card__title">
+                        Processing
+                    </h3>
+
+                    <p class="step-card__description">
+                        Our team immediately starts processing your order with highest quality
+                        standards and precision.
+                    </p>
+
+                    <div class="step-card__time">
+                        ⏱️ 5-10 minutes
+                    </div>
+
                 </div>
+
                 <div class="step-card">
+
                     <div class="step-card__icon">3️⃣</div>
-                    <h3 class="step-card__title">Quality Check</h3>
-                    <p class="step-card__description">Every order undergoes rigorous quality inspection. We ensure perfection before you arrive.</p>
-                    <div class="step-card__time">⏱️ 2-3 minutes</div>
+
+                    <h3 class="step-card__title">
+                        Quality Check
+                    </h3>
+
+                    <p class="step-card__description">
+                        Every order undergoes rigorous quality inspection.
+                        We ensure perfection before you arrive.
+                    </p>
+
+                    <div class="step-card__time">
+                        ⏱️ 2-3 minutes
+                    </div>
+
                 </div>
+
                 <div class="step-card">
+
                     <div class="step-card__icon">4️⃣</div>
-                    <h3 class="step-card__title">Ready for Pickup</h3>
-                    <p class="step-card__description">Your prints are packaged and ready. Walk in, collect, and go. Professional and quick service.</p>
-                    <div class="step-card__time">⏱️ 1 minute</div>
+
+                    <h3 class="step-card__title">
+                        Ready for Pickup
+                    </h3>
+
+                    <p class="step-card__description">
+                        Your prints are packaged and ready.
+                        Walk in, collect, and go. Professional and quick service.
+                    </p>
+
+                    <div class="step-card__time">
+                        ⏱️ 1 minute
+                    </div>
+
                 </div>
+
             </div>
         </div>
     </div>
 
-    <!-- Section 4: Contact & Location -->
     <div class="contact-section">
+
         <div class="container">
+
             <div class="contact-container">
+
                 <div class="contact-left">
-                    <div class="section-badge">📍 Location & Contact</div>
-                    <h2 class="section-h2">Visit Or Connect Directly</h2>
-                    <p>Strategically located directly facing the Taluk Administrative Office for prompt stamp, patta, cert, and photocopy requirements.</p>
+
+                    <div class="section-badge">
+                        📍 Location & Contact
+                    </div>
+
+                    <h2 class="section-h2">
+                        Visit Or Connect Directly
+                    </h2>
+
+                    <p>
+                        Strategically located directly facing the Taluk Administrative Office
+                        for prompt stamp, patta, cert, and photocopy requirements.
+                    </p>
 
                     <div class="contact-grid">
+
                         <div class="contact-card">
-                            <div class="contact-card__label">⏰ OPENING HOURS</div>
-                            <div class="contact-card__value">6:00 AM – 11:00 PM</div>
-                            <div class="contact-card__hint">Monday – Saturday</div>
-                            <div class="contact-card__hint">Sunday: Maintenance & Rest</div>
+
+                            <div class="contact-card__label">
+                                ⏰ OPENING HOURS
+                            </div>
+
+                            <div class="contact-card__value">
+                                6:00 AM – 11:00 PM
+                            </div>
+
+                            <div class="contact-card__hint">
+                                Monday – Saturday
+                            </div>
+
+                            <div class="contact-card__hint">
+                                Sunday: Maintenance & Rest
+                            </div>
+
                         </div>
 
                         <div class="contact-card">
-                            <div class="contact-card__label">📞 DIRECT PHONE</div>
-                            <div class="contact-card__value"><a href="tel:7558191971" class="contact-card__link">7558191971</a></div>
-                            <div class="contact-card__hint">Instant customer support</div>
-                            <div class="contact-card__hint"><a href="tel:7558191971" class="contact-card__link">Call Now</a></div>
+
+                            <div class="contact-card__label">
+                                📞 DIRECT PHONE
+                            </div>
+
+                            <div class="contact-card__value">
+                                <a href="tel:7558191971"
+                                   class="contact-card__link">
+                                    7558191971
+                                </a>
+                            </div>
+
+                            <div class="contact-card__hint">
+                                Instant customer support
+                            </div>
+
+                            <div class="contact-card__hint">
+                                <a href="tel:7558191971"
+                                   class="contact-card__link">
+                                    Call Now
+                                </a>
+                            </div>
+
                         </div>
 
                         <div class="contact-card">
-                            <div class="contact-card__label">💬 WhatsApp</div>
-                            <div class="contact-card__value"><a href="https://wa.me/917558191971" class="contact-card__link">7558191971</a></div>
-                            <div class="contact-card__hint">Send PDFs / Word files 24/7</div>
-                            <div class="contact-card__hint"><a href="https://wa.me/917558191971" class="contact-card__link">Chat Now</a></div>
+
+                            <div class="contact-card__label">
+                                💬 WhatsApp
+                            </div>
+
+                            <div class="contact-card__value">
+                                <a href="https://wa.me/917558191971"
+                                   class="contact-card__link">
+                                    7558191971
+                                </a>
+                            </div>
+
+                            <div class="contact-card__hint">
+                                Send PDFs / Word files 24/7
+                            </div>
+
+                            <div class="contact-card__hint">
+                                <a href="https://wa.me/917558191971"
+                                   class="contact-card__link">
+                                    Chat Now
+                                </a>
+                            </div>
+
                         </div>
 
                         <div class="contact-card">
-                            <div class="contact-card__label">📧 EMAIL</div>
-                            <div class="contact-card__value"><a href="mailto:pasumaix@gmail.com" class="contact-card__link">pasumaix@gmail.com</a></div>
-                            <div class="contact-card__hint">Send high-volume files</div>
-                            <div class="contact-card__hint"><a href="mailto:pasumaix@gmail.com" class="contact-card__link">Email Now</a></div>
+
+                            <div class="contact-card__label">
+                                📧 EMAIL
+                            </div>
+
+                            <div class="contact-card__value">
+                                <a href="mailto:pasumaix@gmail.com"
+                                   class="contact-card__link">
+                                    pasumaix@gmail.com
+                                </a>
+                            </div>
+
+                            <div class="contact-card__hint">
+                                Send high-volume files
+                            </div>
+
+                            <div class="contact-card__hint">
+                                <a href="mailto:pasumaix@gmail.com"
+                                   class="contact-card__link">
+                                    Email Now
+                                </a>
+                            </div>
+
                         </div>
+
                     </div>
 
                     <div style="background: linear-gradient(135deg, #fef08a 0%, #fcd34d 100%); padding: 20px; border-radius: var(--radius-lg); border: 1px solid #fbbf24; margin-top: 24px;">
-                        <h4 style="margin-bottom: 8px; font-weight: 600;">💡 Pro Tip: Rush Hours</h4>
-                        <p style="font-size: 14px; color: #78350f; line-height: 1.6;">Best time to visit: 10 AM–12 PM or 3 PM–5 PM. Avoid 1–2 PM and 5–6 PM for faster service. Order online anytime — we process 24 hours!</p>
+
+                        <h4 style="margin-bottom: 8px; font-weight: 600;">
+                            💡 Pro Tip: Rush Hours
+                        </h4>
+
+                        <p style="font-size: 14px; color: #78350f; line-height: 1.6;">
+                            Best time to visit: 10 AM–12 PM or 3 PM–5 PM.
+                            Avoid 1–2 PM and 5–6 PM for faster service.
+                            Order online anytime — we process 24 hours!
+                        </p>
+
                     </div>
+
                 </div>
 
                 <div>
+
                     <div class="contact-map">
-                        📍 <strong>LOCATION</strong><br><br>
-                        <strong>Pasumai Xerox</strong><br>
-                        Opposite Mannachanallur Taluk Office<br>
-                        Mannachanallur, Tamil Nadu<br><br>
+
+                        📍 <strong>LOCATION</strong>
+
+                        <br><br>
+
+                        <strong>Pasumai Xerox</strong>
+
+                        <br>
+
+                        Opposite Mannachanallur Taluk Office
+
+                        <br>
+
+                        Mannachanallur, Tamil Nadu
+
+                        <br><br>
+
                         <div style="margin-top: 20px; font-size: 12px; color: var(--text-light);">
-                            🗺️ Easy to find — right across from Taluk Office<br>
-                            🚗 Free parking available<br>
+
+                            🗺️ Easy to find — right across from Taluk Office
+                            <br>
+                            🚗 Free parking available
+                            <br>
                             ♿ Accessible to all
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
     <script>
+
         // Configuration
         const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyejiWHYWpLwyEQZaJUDOHlWjuk1kdKL_4s_uAjNrfi2-92JeOJzC3OEsZg2E4ZAtLKqw/exec";
         const UPI_ID = "kjhari2008@okhdfcbank";
@@ -1490,330 +2032,559 @@
 
         // File upload handler
         function handleFileUpload(event) {
-    const file = event.target.files[0];
 
-    if (!file) return;
+            const file = event.target.files[0];
 
-    // Maximum 10 MB
-    if (file.size > 10 * 1024 * 1024) {
-        alert("File is too large. Maximum size is 10 MB.");
-        event.target.value = "";
-        selectedFile = null;
-        fileName = null;
-        return;
-    }
+            if (!file) return;
 
-    selectedFile = file;
-    fileName = file.name;
+            // Maximum 10 MB
+            if (file.size > 10 * 1024 * 1024) {
 
-    document.getElementById("fileName").textContent = "✓ " + file.name;
-    document.getElementById("fileItem").style.display = "flex";
-}
+                alert("File is too large. Maximum size is 10 MB.");
 
-    selectedFile = file;
-    fileName = file.name;
+                event.target.value = "";
 
-    document.getElementById("fileName").textContent = "✓ " + file.name;
-    document.getElementById("fileItem").style.display = "flex";
-}
+                selectedFile = null;
+                fileName = null;
 
+                return;
+            }
+
+            selectedFile = file;
+            fileName = file.name;
+
+            document.getElementById("fileName").textContent =
+                "✓ " + file.name;
+
+            document.getElementById("fileItem").style.display =
+                "flex";
+        }
+
+        // Clear uploaded file
         function clearFile() {
-    fileName = null;
-    selectedFile = null;
 
-    document.getElementById("fileInput").value = "";
-    document.getElementById("fileItem").style.display = "none";
-}
+            fileName = null;
+            selectedFile = null;
+
+            document.getElementById("fileInput").value = "";
+
+            document.getElementById("fileItem").style.display =
+                "none";
+        }
 
         // Service selection
         function selectService(button) {
-            document.querySelectorAll(".service-btn").forEach(b => b.classList.remove("active"));
+
+            document.querySelectorAll(".service-btn")
+                .forEach(b => b.classList.remove("active"));
+
             button.classList.add("active");
+
             selectedService = button.dataset.service;
+
             selectedPrice = parseInt(button.dataset.price);
+
             calculatePrice();
         }
 
         function selectServiceFromCard(service, price) {
-            const btn = document.querySelector(`[data-service="${service}"]`);
-            if (btn) selectService(btn);
+
+            const btn =
+                document.querySelector(`[data-service="${service}"]`);
+
+            if (btn) {
+                selectService(btn);
+            }
+
             document.getElementById("customerName").focus();
         }
 
         // Copies counter
         function incrementCopies() {
-            const input = document.getElementById("copiesInput");
-            input.value = parseInt(input.value) + 1;
+
+            const input =
+                document.getElementById("copiesInput");
+
+            input.value =
+                parseInt(input.value) + 1;
+
             calculatePrice();
         }
 
         function decrementCopies() {
-            const input = document.getElementById("copiesInput");
+
+            const input =
+                document.getElementById("copiesInput");
+
             if (parseInt(input.value) > 1) {
-                input.value = parseInt(input.value) - 1;
+
+                input.value =
+                    parseInt(input.value) - 1;
+
                 calculatePrice();
             }
         }
 
         // Calculate price
         function calculatePrice() {
-            const copies = parseInt(document.getElementById("copiesInput").value) || 1;
-            const total = selectedPrice * copies;
 
-            document.getElementById("summaryService").textContent = selectedService || "None";
-            document.getElementById("summaryPrice").textContent = selectedPrice;
-            document.getElementById("summaryQuantity").textContent = copies;
-            document.getElementById("totalAmount").textContent = total;
+            const copies =
+                parseInt(document.getElementById("copiesInput").value) || 1;
 
-            const payBtn = document.getElementById("paymentBtn");
-            payBtn.disabled = !selectedService || copies < 1;
+            const total =
+                selectedPrice * copies;
+
+            document.getElementById("summaryService").textContent =
+                selectedService || "None";
+
+            document.getElementById("summaryPrice").textContent =
+                selectedPrice;
+
+            document.getElementById("summaryQuantity").textContent =
+                copies;
+
+            document.getElementById("totalAmount").textContent =
+                total;
+
+            const payBtn =
+                document.getElementById("paymentBtn");
+
+            payBtn.disabled =
+                !selectedService || copies < 1;
         }
 
         // Payment initiation
         function initiatePayment() {
-            // Validate form
-            const name = document.getElementById("customerName").value.trim();
-            const phone = document.getElementById("customerPhone").value.trim();
+
+            const name =
+                document.getElementById("customerName").value.trim();
+
+            const phone =
+                document.getElementById("customerPhone").value.trim();
 
             if (!name) {
+
                 showError("Please enter your name");
+
                 return;
             }
 
             if (!phone || phone.length !== 10) {
+
                 showError("Please enter a valid 10-digit phone number");
+
                 return;
             }
 
             if (!selectedService) {
+
                 showError("Please select a service");
+
                 return;
             }
 
-            const copies = parseInt(document.getElementById("copiesInput").value);
-            const total = selectedPrice * copies;
+            const copies =
+                parseInt(document.getElementById("copiesInput").value);
 
-            // Prepare order data
+            const total =
+                selectedPrice * copies;
+
             const orderData = {
+
                 name: name,
+
                 phone: phone,
+
                 service: selectedService,
+
                 copies: copies,
-                instructions: document.getElementById("instructions").value.trim(),
-                estimatedTotal: total.toString()
+
+                instructions:
+                    document.getElementById("instructions").value.trim(),
+
+                estimatedTotal:
+                    total.toString()
             };
 
-            // Generate UPI payment URL
-            const upiURL = `upi://pay?pa=${UPI_ID}&pn=${BUSINESS_NAME}&am=${total}&cu=INR`;
+            const upiURL =
+                `upi://pay?pa=${UPI_ID}&pn=${BUSINESS_NAME}&am=${total}&cu=INR`;
 
-            // Save to Google Sheets
-            saveOrderAndPay(orderData, upiURL, total);
+            saveOrderAndPay(
+                orderData,
+                upiURL,
+                total
+            );
         }
 
-        // Save to Google Sheets
+        // Save order and upload file
         function saveOrderAndPay(orderData, upiURL, amount) {
-    const payBtn = document.getElementById("paymentBtn");
-    payBtn.disabled = true;
 
-    const originalText = payBtn.innerHTML;
-    payBtn.innerHTML = '<span class="loading-spinner"></span> Uploading...';
+            const payBtn =
+                document.getElementById("paymentBtn");
 
-    function handleSuccess() {
-        showSuccess(`✓ Order saved! Amount: ₹${amount}`);
+            payBtn.disabled = true;
 
-        setTimeout(() => {
-            const wasSuccessful = tryOpenUPI(upiURL, amount);
+            const originalText =
+                payBtn.innerHTML;
 
-            if (!wasSuccessful) {
-                setTimeout(showUPIFallback, 500);
-            }
-        }, 800);
+            payBtn.innerHTML =
+                '<span class="loading-spinner"></span> Uploading...';
 
-        setTimeout(() => {
-            resetForm();
-            payBtn.innerHTML = originalText;
-            payBtn.disabled = false;
-        }, 3000);
-    }
+            function handleSuccess() {
 
-    function handleError(error) {
-        showError("Could not upload the file/order. Please try again.");
-        console.error("Upload error:", error);
-        payBtn.innerHTML = originalText;
-        payBtn.disabled = false;
-    }
+                showSuccess(
+                    `✓ Order saved! Amount: ₹${amount}`
+                );
 
-    const formData = new URLSearchParams();
-
-    formData.append("name", orderData.name);
-    formData.append("phone", orderData.phone);
-    formData.append("service", orderData.service);
-    formData.append("copies", orderData.copies);
-    formData.append("instructions", orderData.instructions);
-    formData.append("estimatedTotal", orderData.estimatedTotal);
-
-    if (selectedFile) {
-        const reader = new FileReader();
-
-        reader.onload = function(event) {
-            const base64Data = event.target.result;
-
-            formData.append("fileName", selectedFile.name);
-            formData.append("fileMimeType", selectedFile.type);
-            formData.append("fileData", base64Data);
-
-            fetch(APPS_SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                body: formData
-            })
-            .then(() => {
-                handleSuccess();
-            })
-            .catch((error) => {
-                handleError(error);
-            });
-        };
-
-        reader.onerror = function(error) {
-            handleError(error);
-        };
-
-        reader.readAsDataURL(selectedFile);
-
-    } else {
-        fetch(APPS_SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors",
-            body: formData
-        })
-        .then(() => {
-            handleSuccess();
-        })
-        .catch((error) => {
-            handleError(error);
-        });
-    }
-}
-
-                // Reset form after delay
                 setTimeout(() => {
+
+                    const wasSuccessful =
+                        tryOpenUPI(
+                            upiURL,
+                            amount
+                        );
+
+                    if (!wasSuccessful) {
+
+                        setTimeout(
+                            showUPIFallback,
+                            500
+                        );
+                    }
+
+                }, 800);
+
+                setTimeout(() => {
+
                     resetForm();
-                    payBtn.innerHTML = originalText;
+
+                    payBtn.innerHTML =
+                        originalText;
+
                     payBtn.disabled = false;
+
                 }, 3000);
             }
 
             function handleError(error) {
-                showError("Error: Could not save order. Please check your details and try again.");
-                console.error("Error:", error);
-                payBtn.innerHTML = originalText;
+
+                showError(
+                    "Could not upload the file/order. Please try again."
+                );
+
+                console.error(
+                    "Upload error:",
+                    error
+                );
+
+                payBtn.innerHTML =
+                    originalText;
+
                 payBtn.disabled = false;
             }
 
-            if (isFileProtocol) {
-                // Use sendBeacon for file:// protocol (bypasses CORS)
-                try {
-                    navigator.sendBeacon(url);
-                    handleSuccess();
-                } catch (error) {
-                    handleError(error);
-                }
+            const formData =
+                new URLSearchParams();
+
+            formData.append(
+                "name",
+                orderData.name
+            );
+
+            formData.append(
+                "phone",
+                orderData.phone
+            );
+
+            formData.append(
+                "service",
+                orderData.service
+            );
+
+            formData.append(
+                "copies",
+                orderData.copies
+            );
+
+            formData.append(
+                "instructions",
+                orderData.instructions
+            );
+
+            formData.append(
+                "estimatedTotal",
+                orderData.estimatedTotal
+            );
+
+            if (selectedFile) {
+
+                const reader =
+                    new FileReader();
+
+                reader.onload =
+                    function(event) {
+
+                        const base64Data =
+                            event.target.result;
+
+                        formData.append(
+                            "fileName",
+                            selectedFile.name
+                        );
+
+                        formData.append(
+                            "fileMimeType",
+                            selectedFile.type
+                        );
+
+                        formData.append(
+                            "fileData",
+                            base64Data
+                        );
+
+                        fetch(
+                            APPS_SCRIPT_URL,
+                            {
+                                method: "POST",
+                                mode: "no-cors",
+                                body: formData
+                            }
+                        )
+                        .then(() => {
+
+                            handleSuccess();
+
+                        })
+                        .catch((error) => {
+
+                            handleError(error);
+
+                        });
+                    };
+
+                reader.onerror =
+                    function(error) {
+
+                        handleError(error);
+
+                    };
+
+                reader.readAsDataURL(
+                    selectedFile
+                );
+
             } else {
-                // Use fetch for http:// or https:// protocol (hosted versions)
-                fetch(url, {
-                    method: "GET",
-                    mode: "no-cors"
-                })
+
+                fetch(
+                    APPS_SCRIPT_URL,
+                    {
+                        method: "POST",
+                        mode: "no-cors",
+                        body: formData
+                    }
+                )
                 .then(() => {
+
                     handleSuccess();
+
                 })
                 .catch((error) => {
+
                     handleError(error);
+
                 });
             }
         }
 
-        // Try to open UPI payment - returns true if scheme opened
+        // Try to open UPI payment
         function tryOpenUPI(upiURL, amount) {
+
             try {
-                // Detect if on mobile
-                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-                
+
+                const isMobile =
+                    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+                    .test(navigator.userAgent);
+
                 if (isMobile) {
-                    // On mobile, try to open UPI
-                    window.location.href = upiURL;
+
+                    window.location.href =
+                        upiURL;
+
                     return true;
+
                 } else {
-                    // On desktop, show fallback
+
                     return false;
                 }
+
             } catch (error) {
-                console.error("UPI open error:", error);
+
+                console.error(
+                    "UPI open error:",
+                    error
+                );
+
                 return false;
             }
         }
 
-        // Show UPI payment fallback details
+        // Show UPI payment fallback
         function showUPIFallback() {
-            const amount = document.getElementById("totalAmount").textContent;
-            const upiPayURL = `upi://pay?pa=${UPI_ID}&pn=${BUSINESS_NAME}&am=${amount}&cu=INR`;
-            
+
+            const amount =
+                document.getElementById("totalAmount").textContent;
+
+            const upiPayURL =
+                `upi://pay?pa=${UPI_ID}&pn=${BUSINESS_NAME}&am=${amount}&cu=INR`;
+
             const fallbackHTML = `
-                <div style="background: linear-gradient(135deg, #fef08a 0%, #fcd34d 100%); padding: 20px; border-radius: 8px; border: 2px solid #fbbf24; margin-top: 16px; color: #78350f;">
-                    <h4 style="margin-bottom: 12px; font-weight: 700; font-size: 16px;">💳 Complete Payment</h4>
-                    <p style="margin-bottom: 12px; font-size: 14px; line-height: 1.6;">
-                        <strong>UPI ID:</strong> <code style="background: rgba(0,0,0,0.1); padding: 6px 10px; border-radius: 4px; font-family: monospace; font-size: 13px;">kjhari2008@okhdfcbank</code>
+
+                <div style="
+                    background: linear-gradient(135deg, #fef08a 0%, #fcd34d 100%);
+                    padding: 20px;
+                    border-radius: 8px;
+                    border: 2px solid #fbbf24;
+                    margin-top: 16px;
+                    color: #78350f;
+                ">
+
+                    <h4 style="
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        font-size: 16px;
+                    ">
+                        💳 Complete Payment
+                    </h4>
+
+                    <p style="
+                        margin-bottom: 12px;
+                        font-size: 14px;
+                        line-height: 1.6;
+                    ">
+                        <strong>UPI ID:</strong>
+
+                        <code style="
+                            background: rgba(0,0,0,0.1);
+                            padding: 6px 10px;
+                            border-radius: 4px;
+                            font-family: monospace;
+                            font-size: 13px;
+                        ">
+                            kjhari2008@okhdfcbank
+                        </code>
                     </p>
-                    <p style="margin-bottom: 12px; font-size: 14px; line-height: 1.6;">
-                        <strong>Business:</strong> Pasumai Xerox &nbsp; | &nbsp; <strong>Amount:</strong> ₹${amount}
+
+                    <p style="
+                        margin-bottom: 12px;
+                        font-size: 14px;
+                        line-height: 1.6;
+                    ">
+                        <strong>Business:</strong>
+                        Pasumai Xerox
+                        &nbsp; | &nbsp;
+                        <strong>Amount:</strong>
+                        ₹${amount}
                     </p>
-                    <p style="margin: 0; font-size: 12px; opacity: 0.9;">✓ Order saved! Open UPI app on your phone and pay ₹${amount} to complete transaction.</p>
+
+                    <p style="
+                        margin: 0;
+                        font-size: 12px;
+                        opacity: 0.9;
+                    ">
+                        ✓ Order saved! Open UPI app on your phone and pay
+                        ₹${amount} to complete transaction.
+                    </p>
+
                 </div>
             `;
-            
-            const alertDiv = document.createElement('div');
-            alertDiv.innerHTML = fallbackHTML;
-            alertDiv.style.marginTop = "16px";
-            
-            // Insert after form
-            const formSection = document.querySelector(".form-section");
+
+            const alertDiv =
+                document.createElement("div");
+
+            alertDiv.innerHTML =
+                fallbackHTML;
+
+            alertDiv.style.marginTop =
+                "16px";
+
+            const formSection =
+                document.querySelector(".form-section");
+
             if (formSection) {
-                formSection.appendChild(alertDiv);
+
+                formSection.appendChild(
+                    alertDiv
+                );
             }
         }
 
         // Show alerts
         function showSuccess(message) {
-            const alert = document.getElementById("successAlert");
-            alert.textContent = message;
+
+            const alert =
+                document.getElementById("successAlert");
+
+            alert.textContent =
+                message;
+
             alert.classList.add("show");
-            setTimeout(() => alert.classList.remove("show"), 5000);
+
+            setTimeout(() => {
+
+                alert.classList.remove("show");
+
+            }, 5000);
         }
 
         function showError(message) {
-            const alert = document.getElementById("errorAlert");
-            alert.textContent = "❌ " + message;
+
+            const alert =
+                document.getElementById("errorAlert");
+
+            alert.textContent =
+                "❌ " + message;
+
             alert.classList.add("show");
-            setTimeout(() => alert.classList.remove("show"), 5000);
+
+            setTimeout(() => {
+
+                alert.classList.remove("show");
+
+            }, 5000);
         }
 
         // Reset form
         function resetForm() {
+
             document.getElementById("orderForm").reset();
-            document.querySelectorAll(".service-btn").forEach(b => b.classList.remove("active"));
-            document.getElementById("copiesInput").value = "1";
-            document.getElementById("fileItem").style.display = "none";
+
+            document.querySelectorAll(".service-btn")
+                .forEach(b =>
+                    b.classList.remove("active")
+                );
+
+            document.getElementById("copiesInput").value =
+                "1";
+
+            document.getElementById("fileItem").style.display =
+                "none";
+
             fileName = null;
+            selectedFile = null;
             selectedService = null;
             selectedPrice = 0;
+
             calculatePrice();
         }
 
         // Initialize
-        document.addEventListener("DOMContentLoaded", function() {
-            calculatePrice();
-        });
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+                calculatePrice();
+            }
+        );
+
     </script>
 
 </body>
