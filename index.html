@@ -2067,23 +2067,29 @@ function clearFile() {
 
 // ================= SERVICE =================
 
-function selectService(service, price) {
+// FIXED: accepts the button element from onclick="selectService(this)"
+function selectService(button) {
+  if (!button) return;
+
+  const service = button.dataset.service;
+  const price = Number(button.dataset.price);
+
   selectedService = service;
-  selectedPrice = Number(price);
+  selectedPrice = price;
 
   document.querySelectorAll(".service-btn").forEach(btn => {
     btn.classList.remove("active");
-
-    if (btn.dataset.service === service) {
-      btn.classList.add("active");
-    }
   });
 
+  button.classList.add("active");
+
   document.getElementById("summaryService").textContent = service;
+
   calculatePrice();
 }
 
 
+// Service selection from the rate-card below
 function selectServiceFromCard(service, price) {
   selectedService = service;
   selectedPrice = Number(price);
@@ -2097,6 +2103,7 @@ function selectServiceFromCard(service, price) {
   });
 
   document.getElementById("summaryService").textContent = service;
+
   calculatePrice();
 
   document.getElementById("orderForm").scrollIntoView({
@@ -2107,6 +2114,16 @@ function selectServiceFromCard(service, price) {
 
 // ================= COPIES =================
 
+function incrementCopies() {
+  changeCopies(1);
+}
+
+
+function decrementCopies() {
+  changeCopies(-1);
+}
+
+
 function changeCopies(amount) {
   const input = document.getElementById("copiesInput");
 
@@ -2114,7 +2131,9 @@ function changeCopies(amount) {
 
   copies += amount;
 
-  if (copies < 1) copies = 1;
+  if (copies < 1) {
+    copies = 1;
+  }
 
   input.value = copies;
 
@@ -2129,24 +2148,34 @@ function calculatePrice() {
 
   let copies = parseInt(copiesInput.value, 10) || 1;
 
-  if (copies < 1) copies = 1;
+  if (copies < 1) {
+    copies = 1;
+  }
 
   copiesInput.value = copies;
 
-  const total = selectedPrice > 0 ? selectedPrice * copies : 0;
+  const total =
+    selectedPrice > 0
+      ? selectedPrice * copies
+      : 0;
 
   document.getElementById("summaryPrice").textContent =
-    selectedPrice > 0 ? "₹" + selectedPrice : "₹0";
+    selectedPrice > 0
+      ? selectedPrice
+      : "0";
 
-  document.getElementById("summaryQuantity").textContent = copies;
+  document.getElementById("summaryQuantity").textContent =
+    copies;
 
   document.getElementById("totalAmount").textContent =
-    "₹" + total;
+    total;
 
-  const paymentBtn = document.getElementById("paymentBtn");
+  const paymentBtn =
+    document.getElementById("paymentBtn");
 
   if (paymentBtn) {
-    paymentBtn.disabled = !(selectedService && selectedPrice > 0);
+    paymentBtn.disabled =
+      !(selectedService && selectedPrice > 0);
   }
 }
 
@@ -2156,8 +2185,11 @@ function calculatePrice() {
 function initiatePayment() {
   clearAlerts();
 
-  const name = document.getElementById("customerName").value.trim();
-  const phone = document.getElementById("customerPhone").value.trim();
+  const name =
+    document.getElementById("customerName").value.trim();
+
+  const phone =
+    document.getElementById("customerPhone").value.trim();
 
   if (!selectedService || selectedPrice <= 0) {
     showError("Please select a service.");
@@ -2180,12 +2212,17 @@ function initiatePayment() {
   }
 
   const copies =
-    parseInt(document.getElementById("copiesInput").value, 10) || 1;
+    parseInt(
+      document.getElementById("copiesInput").value,
+      10
+    ) || 1;
 
-  const total = selectedPrice * copies;
+  const total =
+    selectedPrice * copies;
 
   const confirmed = confirm(
-    "Your total amount is ₹" + total +
+    "Your total amount is ₹" +
+    total +
     ".\n\nClick OK to continue with the order."
   );
 
@@ -2200,8 +2237,11 @@ function initiatePayment() {
 function saveOrderAndPay() {
   clearAlerts();
 
-  const name = document.getElementById("customerName").value.trim();
-  const phone = document.getElementById("customerPhone").value.trim();
+  const name =
+    document.getElementById("customerName").value.trim();
+
+  const phone =
+    document.getElementById("customerPhone").value.trim();
 
   const printingSides =
     document.getElementById("printingSides").value;
@@ -2210,14 +2250,18 @@ function saveOrderAndPay() {
     document.getElementById("instructions").value.trim();
 
   const copies =
-    parseInt(document.getElementById("copiesInput").value, 10) || 1;
+    parseInt(
+      document.getElementById("copiesInput").value,
+      10
+    ) || 1;
 
   if (!selectedFile) {
     showError("Please upload a document.");
     return;
   }
 
-  const total = selectedPrice * copies;
+  const total =
+    selectedPrice * copies;
 
   const orderNumber =
     "PX" +
@@ -2225,37 +2269,93 @@ function saveOrderAndPay() {
 
   const reader = new FileReader();
 
-  reader.onload = function(e) {
+  reader.onload = function(event) {
 
     try {
 
-      const base64Data = e.target.result.split(",")[1];
+      const result =
+        event.target.result;
 
-      const formData = new FormData();
+      const base64Data =
+        result.split(",")[1];
 
-      formData.append("action", "createOrder");
+      if (!base64Data) {
+        showError("Could not read the uploaded file.");
+        return;
+      }
 
-      formData.append("orderNumber", orderNumber);
-      formData.append("name", name);
-      formData.append("phone", phone);
-      formData.append("service", selectedService);
-      formData.append("copies", copies);
-      formData.append("printingSides", printingSides || "Single Sided");
+      const formData =
+        new FormData();
+
+      formData.append(
+        "action",
+        "createOrder"
+      );
+
+      formData.append(
+        "orderNumber",
+        orderNumber
+      );
+
+      formData.append(
+        "name",
+        name
+      );
+
+      formData.append(
+        "phone",
+        phone
+      );
+
+      formData.append(
+        "service",
+        selectedService
+      );
+
+      formData.append(
+        "copies",
+        copies
+      );
+
+      formData.append(
+        "printingSides",
+        printingSides || "Single Sided"
+      );
 
       const combinedInstructions = [
         printingSides,
         instructions
-      ].filter(Boolean).join(" | ");
+      ]
+      .filter(Boolean)
+      .join(" | ");
 
-      formData.append("instructions", combinedInstructions);
+      formData.append(
+        "instructions",
+        combinedInstructions
+      );
 
-      formData.append("estimatedTotal", total);
+      formData.append(
+        "estimatedTotal",
+        total
+      );
 
-      formData.append("fileName", selectedFile.name);
-      formData.append("fileType", selectedFile.type);
-      formData.append("fileData", base64Data);
+      formData.append(
+        "fileName",
+        selectedFile.name
+      );
 
-      const paymentBtn = document.getElementById("paymentBtn");
+      formData.append(
+        "fileType",
+        selectedFile.type || "application/octet-stream"
+      );
+
+      formData.append(
+        "fileData",
+        base64Data
+      );
+
+      const paymentBtn =
+        document.getElementById("paymentBtn");
 
       if (paymentBtn) {
         paymentBtn.disabled = true;
@@ -2270,45 +2370,56 @@ function saveOrderAndPay() {
       .then(function() {
 
         showSuccess(
-          "✓ Order submitted successfully! Total: ₹" +
+          "✓ Order submitted successfully! " +
+          "Total: ₹" +
           total +
           ". Your file has been sent for processing."
         );
 
         showUPIFallback(total);
 
-        resetForm();
-
       })
       .catch(function(error) {
 
-        console.error(error);
+        console.error(
+          "Upload error:",
+          error
+        );
 
         showError(
           "Upload failed. Please try again."
         );
 
-        const paymentBtn =
-          document.getElementById("paymentBtn");
-
         if (paymentBtn) {
           paymentBtn.disabled = false;
-          paymentBtn.textContent = "Pay & Place Order";
+          paymentBtn.textContent =
+            "💳 Pay with UPI/GPay";
         }
 
       });
 
     } catch (error) {
 
-      console.error(error);
-      showError("Could not prepare the file for upload.");
+      console.error(
+        "File preparation error:",
+        error
+      );
 
+      showError(
+        "Could not prepare the file for upload."
+      );
     }
   };
 
+
   reader.onerror = function() {
-    showError("Could not read the selected file.");
+
+    showError(
+      "Could not read the selected file."
+    );
+
   };
+
 
   reader.readAsDataURL(selectedFile);
 }
@@ -2318,44 +2429,71 @@ function saveOrderAndPay() {
 
 function showUPIFallback(total) {
 
-  const old = document.getElementById("upiFallback");
+  const old =
+    document.getElementById("upiFallback");
 
-  if (old) old.remove();
+  if (old) {
+    old.remove();
+  }
 
   const upiUrl =
     "upi://pay" +
-    "?pa=" + encodeURIComponent(UPI_ID) +
-    "&pn=" + encodeURIComponent(BUSINESS_NAME) +
-    "&am=" + encodeURIComponent(total) +
+    "?pa=" +
+    encodeURIComponent(UPI_ID) +
+    "&pn=" +
+    encodeURIComponent(BUSINESS_NAME) +
+    "&am=" +
+    encodeURIComponent(total) +
     "&cu=INR";
 
-  const box = document.createElement("div");
+  const box =
+    document.createElement("div");
 
-  box.id = "upiFallback";
+  box.id =
+    "upiFallback";
 
-  box.style.marginTop = "15px";
-  box.style.padding = "15px";
-  box.style.border = "1px solid #ddd";
-  box.style.borderRadius = "10px";
-  box.style.background = "#f8f8f8";
+  box.style.marginTop =
+    "15px";
+
+  box.style.padding =
+    "15px";
+
+  box.style.border =
+    "1px solid #ddd";
+
+  box.style.borderRadius =
+    "10px";
+
+  box.style.background =
+    "#f8f8f8";
 
   box.innerHTML =
     "<strong>Payment</strong><br>" +
-    "Amount: ₹" + total +
+    "Amount: ₹" +
+    total +
     "<br><br>" +
-    "<a href=\"" + upiUrl + "\" " +
-    "style=\"display:inline-block;padding:10px 15px;" +
-    "background:#111;color:white;border-radius:8px;" +
+    "<a href=\"" +
+    upiUrl +
+    "\" " +
+    "style=\"display:inline-block;" +
+    "padding:10px 15px;" +
+    "background:#111;" +
+    "color:white;" +
+    "border-radius:8px;" +
     "text-decoration:none;\">" +
     "Open UPI Payment" +
     "</a>" +
     "<br><br>" +
-    "UPI ID: <strong>" + UPI_ID + "</strong>";
+    "UPI ID: <strong>" +
+    UPI_ID +
+    "</strong>";
 
   const paymentBtn =
     document.getElementById("paymentBtn");
 
-  paymentBtn.parentNode.appendChild(box);
+  if (paymentBtn) {
+    paymentBtn.parentNode.appendChild(box);
+  }
 }
 
 
@@ -2368,8 +2506,13 @@ function showSuccess(message) {
   const alert =
     document.getElementById("successAlert");
 
-  alert.textContent = message;
-  alert.style.display = "block";
+  if (!alert) return;
+
+  alert.textContent =
+    message;
+
+  alert.style.display =
+    "block";
 
   alert.scrollIntoView({
     behavior: "smooth",
@@ -2385,8 +2528,13 @@ function showError(message) {
   const alert =
     document.getElementById("errorAlert");
 
-  alert.textContent = message;
-  alert.style.display = "block";
+  if (!alert) return;
+
+  alert.textContent =
+    message;
+
+  alert.style.display =
+    "block";
 
   alert.scrollIntoView({
     behavior: "smooth",
@@ -2403,8 +2551,13 @@ function clearAlerts() {
   const error =
     document.getElementById("errorAlert");
 
-  if (success) success.style.display = "none";
-  if (error) error.style.display = "none";
+  if (success) {
+    success.style.display = "none";
+  }
+
+  if (error) {
+    error.style.display = "none";
+  }
 }
 
 
@@ -2415,36 +2568,46 @@ function resetForm() {
   const form =
     document.getElementById("orderForm");
 
-  if (form) form.reset();
+  if (form) {
+    form.reset();
+  }
 
   selectedFile = null;
+  selectedService = null;
+  selectedPrice = 0;
 
   const fileItem =
     document.getElementById("fileItem");
 
-  if (fileItem) fileItem.style.display = "none";
+  if (fileItem) {
+    fileItem.style.display = "none";
+  }
 
   const fallback =
     document.getElementById("upiFallback");
 
-  if (fallback) fallback.remove();
+  if (fallback) {
+    fallback.remove();
+  }
 
-  document.getElementById("copiesInput").value = 1;
+  const copiesInput =
+    document.getElementById("copiesInput");
+
+  if (copiesInput) {
+    copiesInput.value = 1;
+  }
 
   document.getElementById("summaryService").textContent =
-    "Select a service";
+    "None";
 
   document.getElementById("summaryPrice").textContent =
-    "₹0";
+    "0";
 
   document.getElementById("summaryQuantity").textContent =
     "1";
 
   document.getElementById("totalAmount").textContent =
-    "₹0";
-
-  selectedService = null;
-  selectedPrice = 0;
+    "0";
 
   document.querySelectorAll(".service-btn").forEach(btn => {
     btn.classList.remove("active");
@@ -2455,51 +2618,67 @@ function resetForm() {
 
   if (paymentBtn) {
     paymentBtn.disabled = true;
-    paymentBtn.textContent = "Pay & Place Order";
+    paymentBtn.textContent =
+      "💳 Pay with UPI/GPay";
   }
 }
 
 
 // ================= START =================
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
 
-  const fileInput =
-    document.getElementById("fileInput");
+    const fileInput =
+      document.getElementById("fileInput");
 
-  if (fileInput) {
-    fileInput.addEventListener(
-      "change",
-      handleFileUpload
-    );
+    if (fileInput) {
+
+      fileInput.addEventListener(
+        "change",
+        handleFileUpload
+      );
+
+    }
+
+
+    const copiesInput =
+      document.getElementById("copiesInput");
+
+    if (copiesInput) {
+
+      copiesInput.addEventListener(
+        "input",
+        calculatePrice
+      );
+
+    }
+
+
+    const orderForm =
+      document.getElementById("orderForm");
+
+    if (orderForm) {
+
+      orderForm.addEventListener(
+        "submit",
+        function(event) {
+
+          event.preventDefault();
+
+          initiatePayment();
+
+        }
+      );
+
+    }
+
+
+    calculatePrice();
+
   }
-
-  const copiesInput =
-    document.getElementById("copiesInput");
-
-  if (copiesInput) {
-    copiesInput.addEventListener(
-      "input",
-      calculatePrice
-    );
-  }
-
-  const orderForm =
-    document.getElementById("orderForm");
-
-  if (orderForm) {
-    orderForm.addEventListener(
-      "submit",
-      function(event) {
-        event.preventDefault();
-        initiatePayment();
-      }
-    );
-  }
-
-  calculatePrice();
-
-});
+);
 </script>
 
 
