@@ -1478,7 +1478,7 @@
 
     <script>
         // Configuration
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwAq-G2GB44p6CYLplKzHGlMJKxkMi-iUGayf0XV7nrc63IWV3fxy1TsjTMXzG4v_8PzA/exec";
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyejiWHYWpLwyEQZaJUDOHlWjuk1kdKL_4s_uAjNrfi2-92JeOJzC3OEsZg2E4ZAtLKqw/exec";
         const UPI_ID = "kjhari2008@okhdfcbank";
         const BUSINESS_NAME = "Pasumai%20Xerox";
 
@@ -1486,22 +1486,44 @@
         let selectedService = null;
         let selectedPrice = 0;
         let fileName = null;
+        let selectedFile = null;
 
         // File upload handler
         function handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                fileName = file.name;
-                document.getElementById("fileName").textContent = "✓ " + fileName;
-                document.getElementById("fileItem").style.display = "flex";
-            }
-        }
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    // Maximum 10 MB
+    if (file.size > 10 * 1024 * 1024) {
+        alert("File is too large. Maximum size is 10 MB.");
+        event.target.value = "";
+        selectedFile = null;
+        fileName = null;
+        return;
+    }
+
+    selectedFile = file;
+    fileName = file.name;
+
+    document.getElementById("fileName").textContent = "✓ " + file.name;
+    document.getElementById("fileItem").style.display = "flex";
+}
+
+    selectedFile = file;
+    fileName = file.name;
+
+    document.getElementById("fileName").textContent = "✓ " + file.name;
+    document.getElementById("fileItem").style.display = "flex";
+}
 
         function clearFile() {
-            fileName = null;
-            document.getElementById("fileInput").value = "";
-            document.getElementById("fileItem").style.display = "none";
-        }
+    fileName = null;
+    selectedFile = null;
+
+    document.getElementById("fileInput").value = "";
+    document.getElementById("fileItem").style.display = "none";
+}
 
         // Service selection
         function selectService(button) {
@@ -1590,29 +1612,89 @@
 
         // Save to Google Sheets
         function saveOrderAndPay(orderData, upiURL, amount) {
-            // Disable button during processing
-            const payBtn = document.getElementById("paymentBtn");
-            payBtn.disabled = true;
-            const originalText = payBtn.innerHTML;
-            payBtn.innerHTML = '<span class="loading-spinner"></span> Processing...';
+    const payBtn = document.getElementById("paymentBtn");
+    payBtn.disabled = true;
 
-            // Build URL with query parameters
-            const url = APPS_SCRIPT_URL + "?" + new URLSearchParams(orderData).toString();
+    const originalText = payBtn.innerHTML;
+    payBtn.innerHTML = '<span class="loading-spinner"></span> Uploading...';
 
-            // Check if running on file:// protocol (local file)
-            const isFileProtocol = window.location.protocol === 'file:';
+    function handleSuccess() {
+        showSuccess(`✓ Order saved! Amount: ₹${amount}`);
 
-            function handleSuccess() {
-                showSuccess(`✓ Order saved! Amount: ₹${amount}`);
-                
-                // Try to open UPI payment
-                setTimeout(() => {
-                    const wasSuccessful = tryOpenUPI(upiURL, amount);
-                    if (!wasSuccessful) {
-                        // Fallback: Show manual payment details
-                        setTimeout(showUPIFallback, 500);
-                    }
-                }, 800);
+        setTimeout(() => {
+            const wasSuccessful = tryOpenUPI(upiURL, amount);
+
+            if (!wasSuccessful) {
+                setTimeout(showUPIFallback, 500);
+            }
+        }, 800);
+
+        setTimeout(() => {
+            resetForm();
+            payBtn.innerHTML = originalText;
+            payBtn.disabled = false;
+        }, 3000);
+    }
+
+    function handleError(error) {
+        showError("Could not upload the file/order. Please try again.");
+        console.error("Upload error:", error);
+        payBtn.innerHTML = originalText;
+        payBtn.disabled = false;
+    }
+
+    const formData = new URLSearchParams();
+
+    formData.append("name", orderData.name);
+    formData.append("phone", orderData.phone);
+    formData.append("service", orderData.service);
+    formData.append("copies", orderData.copies);
+    formData.append("instructions", orderData.instructions);
+    formData.append("estimatedTotal", orderData.estimatedTotal);
+
+    if (selectedFile) {
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            const base64Data = event.target.result;
+
+            formData.append("fileName", selectedFile.name);
+            formData.append("fileMimeType", selectedFile.type);
+            formData.append("fileData", base64Data);
+
+            fetch(APPS_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            })
+            .then(() => {
+                handleSuccess();
+            })
+            .catch((error) => {
+                handleError(error);
+            });
+        };
+
+        reader.onerror = function(error) {
+            handleError(error);
+        };
+
+        reader.readAsDataURL(selectedFile);
+
+    } else {
+        fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            body: formData
+        })
+        .then(() => {
+            handleSuccess();
+        })
+        .catch((error) => {
+            handleError(error);
+        });
+    }
+}
 
                 // Reset form after delay
                 setTimeout(() => {
