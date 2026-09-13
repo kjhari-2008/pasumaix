@@ -2017,575 +2017,491 @@
 
     </div>
 
-    <script>
+<script>
+const APPS_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbyejiWHYWpLwyEQZaJUDOHlWjuk1kdKL_4s_uAjNrfi2-92JeOJzC3OEsZg2E4ZAtLKqw/exec";
 
-        // Configuration
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyejiWHYWpLwyEQZaJUDOHlWjuk1kdKL_4s_uAjNrfi2-92JeOJzC3OEsZg2E4ZAtLKqw/exec";
-        const UPI_ID = "kjhari2008@okhdfcbank";
-        const BUSINESS_NAME = "Pasumai%20Xerox";
+const UPI_ID = "kjhari2008@okhdfcbank";
+const BUSINESS_NAME = "Pasumai Xerox";
 
-        // State
-        let selectedService = null;
-        let selectedPrice = 0;
-        let fileName = null;
-        let selectedFile = null;
+let selectedService = null;
+let selectedPrice = 0;
+let selectedFile = null;
 
-        // File upload handler
-        function handleFileUpload(event) {
 
-            const file = event.target.files[0];
+// ================= FILE UPLOAD =================
 
-            if (!file) return;
+function handleFileUpload(event) {
+  const file = event.target.files[0];
 
-            // Maximum 10 MB
-            if (file.size > 10 * 1024 * 1024) {
+  if (!file) return;
 
-                alert("File is too large. Maximum size is 10 MB.");
+  if (file.size > 10 * 1024 * 1024) {
+    showError("File is too large. Maximum size is 10 MB.");
+    event.target.value = "";
+    return;
+  }
 
-                event.target.value = "";
+  selectedFile = file;
 
-                selectedFile = null;
-                fileName = null;
+  document.getElementById("fileName").textContent = file.name;
+  document.getElementById("fileItem").style.display = "flex";
 
-                return;
-            }
+  clearAlerts();
+  calculatePrice();
+}
 
-            selectedFile = file;
-            fileName = file.name;
 
-            document.getElementById("fileName").textContent =
-                "✓ " + file.name;
+function clearFile() {
+  selectedFile = null;
 
-            document.getElementById("fileItem").style.display =
-                "flex";
-        }
+  const fileInput = document.getElementById("fileInput");
+  const fileItem = document.getElementById("fileItem");
 
-        // Clear uploaded file
-        function clearFile() {
+  if (fileInput) fileInput.value = "";
+  if (fileItem) fileItem.style.display = "none";
 
-            fileName = null;
-            selectedFile = null;
+  calculatePrice();
+}
 
-            document.getElementById("fileInput").value = "";
 
-            document.getElementById("fileItem").style.display =
-                "none";
-        }
+// ================= SERVICE =================
 
-        // Service selection
-        function selectService(button) {
+function selectService(service, price) {
+  selectedService = service;
+  selectedPrice = Number(price);
 
-            document.querySelectorAll(".service-btn")
-                .forEach(b => b.classList.remove("active"));
+  document.querySelectorAll(".service-btn").forEach(btn => {
+    btn.classList.remove("active");
 
-            button.classList.add("active");
+    if (btn.dataset.service === service) {
+      btn.classList.add("active");
+    }
+  });
 
-            selectedService = button.dataset.service;
+  document.getElementById("summaryService").textContent = service;
+  calculatePrice();
+}
 
-            selectedPrice = parseInt(button.dataset.price);
 
-            calculatePrice();
-        }
+function selectServiceFromCard(service, price) {
+  selectedService = service;
+  selectedPrice = Number(price);
 
-        function selectServiceFromCard(service, price) {
+  document.querySelectorAll(".service-btn").forEach(btn => {
+    btn.classList.remove("active");
 
-            const btn =
-                document.querySelector(`[data-service="${service}"]`);
+    if (btn.dataset.service === service) {
+      btn.classList.add("active");
+    }
+  });
 
-            if (btn) {
-                selectService(btn);
-            }
+  document.getElementById("summaryService").textContent = service;
+  calculatePrice();
 
-            document.getElementById("customerName").focus();
-        }
+  document.getElementById("orderForm").scrollIntoView({
+    behavior: "smooth"
+  });
+}
 
-        // Copies counter
-        function incrementCopies() {
 
-            const input =
-                document.getElementById("copiesInput");
+// ================= COPIES =================
 
-            input.value =
-                parseInt(input.value) + 1;
+function changeCopies(amount) {
+  const input = document.getElementById("copiesInput");
 
-            calculatePrice();
-        }
+  let copies = parseInt(input.value, 10) || 1;
 
-        function decrementCopies() {
+  copies += amount;
 
-            const input =
-                document.getElementById("copiesInput");
+  if (copies < 1) copies = 1;
 
-            if (parseInt(input.value) > 1) {
+  input.value = copies;
 
-                input.value =
-                    parseInt(input.value) - 1;
+  calculatePrice();
+}
 
-                calculatePrice();
-            }
-        }
 
-        // Calculate price
-        function calculatePrice() {
+// ================= PRICE =================
 
-            const copies =
-                parseInt(document.getElementById("copiesInput").value) || 1;
+function calculatePrice() {
+  const copiesInput = document.getElementById("copiesInput");
 
-            const total =
-                selectedPrice * copies;
+  let copies = parseInt(copiesInput.value, 10) || 1;
 
-            document.getElementById("summaryService").textContent =
-                selectedService || "None";
+  if (copies < 1) copies = 1;
 
-            document.getElementById("summaryPrice").textContent =
-                selectedPrice;
+  copiesInput.value = copies;
 
-            document.getElementById("summaryQuantity").textContent =
-                copies;
+  const total = selectedPrice > 0 ? selectedPrice * copies : 0;
 
-            document.getElementById("totalAmount").textContent =
-                total;
+  document.getElementById("summaryPrice").textContent =
+    selectedPrice > 0 ? "₹" + selectedPrice : "₹0";
 
-            const payBtn =
-                document.getElementById("paymentBtn");
+  document.getElementById("summaryQuantity").textContent = copies;
 
-            payBtn.disabled =
-                !selectedService || copies < 1;
-        }
+  document.getElementById("totalAmount").textContent =
+    "₹" + total;
 
-        // Payment initiation
-        function initiatePayment() {
+  const paymentBtn = document.getElementById("paymentBtn");
 
-            const name =
-                document.getElementById("customerName").value.trim();
+  if (paymentBtn) {
+    paymentBtn.disabled = !(selectedService && selectedPrice > 0);
+  }
+}
 
-            const phone =
-                document.getElementById("customerPhone").value.trim();
 
-            if (!name) {
+// ================= PAYMENT =================
 
-                showError("Please enter your name");
+function initiatePayment() {
+  clearAlerts();
 
-                return;
-            }
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
 
-            if (!phone || phone.length !== 10) {
+  if (!selectedService || selectedPrice <= 0) {
+    showError("Please select a service.");
+    return;
+  }
 
-                showError("Please enter a valid 10-digit phone number");
+  if (!name) {
+    showError("Please enter your name.");
+    return;
+  }
 
-                return;
-            }
+  if (!/^\d{10}$/.test(phone)) {
+    showError("Please enter a valid 10-digit phone number.");
+    return;
+  }
 
-            if (!selectedService) {
+  if (!selectedFile) {
+    showError("Please upload your document.");
+    return;
+  }
 
-                showError("Please select a service");
+  const copies =
+    parseInt(document.getElementById("copiesInput").value, 10) || 1;
 
-                return;
-            }
+  const total = selectedPrice * copies;
 
-            const copies =
-                parseInt(document.getElementById("copiesInput").value);
+  const confirmed = confirm(
+    "Your total amount is ₹" + total +
+    ".\n\nClick OK to continue with the order."
+  );
 
-            const total =
-                selectedPrice * copies;
+  if (!confirmed) return;
 
-            const orderData = {
+  saveOrderAndPay();
+}
 
-                name: name,
 
-                phone: phone,
+// ================= SAVE ORDER =================
 
-                service: selectedService,
+function saveOrderAndPay() {
+  clearAlerts();
 
-                copies: copies,
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
 
-                instructions:
-                    document.getElementById("instructions").value.trim(),
+  const printingSides =
+    document.getElementById("printingSides").value;
 
-                estimatedTotal:
-                    total.toString()
-            };
+  const instructions =
+    document.getElementById("instructions").value.trim();
 
-            const upiURL =
-                `upi://pay?pa=${UPI_ID}&pn=${BUSINESS_NAME}&am=${total}&cu=INR`;
+  const copies =
+    parseInt(document.getElementById("copiesInput").value, 10) || 1;
 
-            saveOrderAndPay(
-                orderData,
-                upiURL,
-                total
-            );
-        }
+  if (!selectedFile) {
+    showError("Please upload a document.");
+    return;
+  }
 
-        // Save order and upload file
-        function saveOrderAndPay(orderData, upiURL, amount) {
+  const total = selectedPrice * copies;
 
-            const payBtn =
-                document.getElementById("paymentBtn");
+  const orderNumber =
+    "PX" +
+    Date.now().toString().slice(-8);
 
-            payBtn.disabled = true;
+  const reader = new FileReader();
 
-            const originalText =
-                payBtn.innerHTML;
+  reader.onload = function(e) {
 
-            payBtn.innerHTML =
-                '<span class="loading-spinner"></span> Uploading...';
+    try {
 
-            function handleSuccess() {
+      const base64Data = e.target.result.split(",")[1];
 
-                showSuccess(
-                    `✓ Order saved! Amount: ₹${amount}`
-                );
+      const formData = new FormData();
 
-                setTimeout(() => {
+      formData.append("action", "createOrder");
 
-                    const wasSuccessful =
-                        tryOpenUPI(
-                            upiURL,
-                            amount
-                        );
+      formData.append("orderNumber", orderNumber);
+      formData.append("name", name);
+      formData.append("phone", phone);
+      formData.append("service", selectedService);
+      formData.append("copies", copies);
+      formData.append("printingSides", printingSides || "Single Sided");
 
-                    if (!wasSuccessful) {
+      const combinedInstructions = [
+        printingSides,
+        instructions
+      ].filter(Boolean).join(" | ");
 
-                        setTimeout(
-                            showUPIFallback,
-                            500
-                        );
-                    }
+      formData.append("instructions", combinedInstructions);
 
-                }, 800);
+      formData.append("estimatedTotal", total);
 
-                setTimeout(() => {
+      formData.append("fileName", selectedFile.name);
+      formData.append("fileType", selectedFile.type);
+      formData.append("fileData", base64Data);
 
-                    resetForm();
+      const paymentBtn = document.getElementById("paymentBtn");
 
-                    payBtn.innerHTML =
-                        originalText;
+      if (paymentBtn) {
+        paymentBtn.disabled = true;
+        paymentBtn.textContent = "Uploading...";
+      }
 
-                    payBtn.disabled = false;
+      fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      })
+      .then(function() {
 
-                }, 3000);
-            }
-
-            function handleError(error) {
-
-                showError(
-                    "Could not upload the file/order. Please try again."
-                );
-
-                console.error(
-                    "Upload error:",
-                    error
-                );
-
-                payBtn.innerHTML =
-                    originalText;
-
-                payBtn.disabled = false;
-            }
-
-            const formData =
-                new URLSearchParams();
-
-            formData.append(
-                "name",
-                orderData.name
-            );
-
-            formData.append(
-                "phone",
-                orderData.phone
-            );
-
-            formData.append(
-                "service",
-                orderData.service
-            );
-
-            formData.append(
-                "copies",
-                orderData.copies
-            );
-
-            formData.append(
-                "instructions",
-                orderData.instructions
-            );
-
-            formData.append(
-                "estimatedTotal",
-                orderData.estimatedTotal
-            );
-
-            if (selectedFile) {
-
-                const reader =
-                    new FileReader();
-
-                reader.onload =
-                    function(event) {
-
-                        const base64Data =
-                            event.target.result;
-
-                        formData.append(
-                            "fileName",
-                            selectedFile.name
-                        );
-
-                        formData.append(
-                            "fileMimeType",
-                            selectedFile.type
-                        );
-
-                        formData.append(
-                            "fileData",
-                            base64Data
-                        );
-
-                        fetch(
-                            APPS_SCRIPT_URL,
-                            {
-                                method: "POST",
-                                mode: "no-cors",
-                                body: formData
-                            }
-                        )
-                        .then(() => {
-
-                            handleSuccess();
-
-                        })
-                        .catch((error) => {
-
-                            handleError(error);
-
-                        });
-                    };
-
-                reader.onerror =
-                    function(error) {
-
-                        handleError(error);
-
-                    };
-
-                reader.readAsDataURL(
-                    selectedFile
-                );
-
-            } else {
-
-                fetch(
-                    APPS_SCRIPT_URL,
-                    {
-                        method: "POST",
-                        mode: "no-cors",
-                        body: formData
-                    }
-                )
-                .then(() => {
-
-                    handleSuccess();
-
-                })
-                .catch((error) => {
-
-                    handleError(error);
-
-                });
-            }
-        }
-
-        // Try to open UPI payment
-        function tryOpenUPI(upiURL, amount) {
-
-            try {
-
-                const isMobile =
-                    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
-                    .test(navigator.userAgent);
-
-                if (isMobile) {
-
-                    window.location.href =
-                        upiURL;
-
-                    return true;
-
-                } else {
-
-                    return false;
-                }
-
-            } catch (error) {
-
-                console.error(
-                    "UPI open error:",
-                    error
-                );
-
-                return false;
-            }
-        }
-
-        // Show UPI payment fallback
-        function showUPIFallback() {
-
-            const amount =
-                document.getElementById("totalAmount").textContent;
-
-            const upiPayURL =
-                `upi://pay?pa=${UPI_ID}&pn=${BUSINESS_NAME}&am=${amount}&cu=INR`;
-
-            const fallbackHTML = `
-
-                <div style="
-                    background: linear-gradient(135deg, #fef08a 0%, #fcd34d 100%);
-                    padding: 20px;
-                    border-radius: 8px;
-                    border: 2px solid #fbbf24;
-                    margin-top: 16px;
-                    color: #78350f;
-                ">
-
-                    <h4 style="
-                        margin-bottom: 12px;
-                        font-weight: 700;
-                        font-size: 16px;
-                    ">
-                        💳 Complete Payment
-                    </h4>
-
-                    <p style="
-                        margin-bottom: 12px;
-                        font-size: 14px;
-                        line-height: 1.6;
-                    ">
-                        <strong>UPI ID:</strong>
-
-                        <code style="
-                            background: rgba(0,0,0,0.1);
-                            padding: 6px 10px;
-                            border-radius: 4px;
-                            font-family: monospace;
-                            font-size: 13px;
-                        ">
-                            kjhari2008@okhdfcbank
-                        </code>
-                    </p>
-
-                    <p style="
-                        margin-bottom: 12px;
-                        font-size: 14px;
-                        line-height: 1.6;
-                    ">
-                        <strong>Business:</strong>
-                        Pasumai Xerox
-                        &nbsp; | &nbsp;
-                        <strong>Amount:</strong>
-                        ₹${amount}
-                    </p>
-
-                    <p style="
-                        margin: 0;
-                        font-size: 12px;
-                        opacity: 0.9;
-                    ">
-                        ✓ Order saved! Open UPI app on your phone and pay
-                        ₹${amount} to complete transaction.
-                    </p>
-
-                </div>
-            `;
-
-            const alertDiv =
-                document.createElement("div");
-
-            alertDiv.innerHTML =
-                fallbackHTML;
-
-            alertDiv.style.marginTop =
-                "16px";
-
-            const formSection =
-                document.querySelector(".form-section");
-
-            if (formSection) {
-
-                formSection.appendChild(
-                    alertDiv
-                );
-            }
-        }
-
-        // Show alerts
-        function showSuccess(message) {
-
-            const alert =
-                document.getElementById("successAlert");
-
-            alert.textContent =
-                message;
-
-            alert.classList.add("show");
-
-            setTimeout(() => {
-
-                alert.classList.remove("show");
-
-            }, 5000);
-        }
-
-        function showError(message) {
-
-            const alert =
-                document.getElementById("errorAlert");
-
-            alert.textContent =
-                "❌ " + message;
-
-            alert.classList.add("show");
-
-            setTimeout(() => {
-
-                alert.classList.remove("show");
-
-            }, 5000);
-        }
-
-        // Reset form
-        function resetForm() {
-
-            document.getElementById("orderForm").reset();
-
-            document.querySelectorAll(".service-btn")
-                .forEach(b =>
-                    b.classList.remove("active")
-                );
-
-            document.getElementById("copiesInput").value =
-                "1";
-
-            document.getElementById("fileItem").style.display =
-                "none";
-
-            fileName = null;
-            selectedFile = null;
-            selectedService = null;
-            selectedPrice = 0;
-
-            calculatePrice();
-        }
-
-        // Initialize
-        document.addEventListener(
-            "DOMContentLoaded",
-            function() {
-                calculatePrice();
-            }
+        showSuccess(
+          "✓ Order submitted successfully! Total: ₹" +
+          total +
+          ". Your file has been sent for processing."
         );
 
-    </script>
+        showUPIFallback(total);
+
+        resetForm();
+
+      })
+      .catch(function(error) {
+
+        console.error(error);
+
+        showError(
+          "Upload failed. Please try again."
+        );
+
+        const paymentBtn =
+          document.getElementById("paymentBtn");
+
+        if (paymentBtn) {
+          paymentBtn.disabled = false;
+          paymentBtn.textContent = "Pay & Place Order";
+        }
+
+      });
+
+    } catch (error) {
+
+      console.error(error);
+      showError("Could not prepare the file for upload.");
+
+    }
+  };
+
+  reader.onerror = function() {
+    showError("Could not read the selected file.");
+  };
+
+  reader.readAsDataURL(selectedFile);
+}
+
+
+// ================= UPI =================
+
+function showUPIFallback(total) {
+
+  const old = document.getElementById("upiFallback");
+
+  if (old) old.remove();
+
+  const upiUrl =
+    "upi://pay" +
+    "?pa=" + encodeURIComponent(UPI_ID) +
+    "&pn=" + encodeURIComponent(BUSINESS_NAME) +
+    "&am=" + encodeURIComponent(total) +
+    "&cu=INR";
+
+  const box = document.createElement("div");
+
+  box.id = "upiFallback";
+
+  box.style.marginTop = "15px";
+  box.style.padding = "15px";
+  box.style.border = "1px solid #ddd";
+  box.style.borderRadius = "10px";
+  box.style.background = "#f8f8f8";
+
+  box.innerHTML =
+    "<strong>Payment</strong><br>" +
+    "Amount: ₹" + total +
+    "<br><br>" +
+    "<a href=\"" + upiUrl + "\" " +
+    "style=\"display:inline-block;padding:10px 15px;" +
+    "background:#111;color:white;border-radius:8px;" +
+    "text-decoration:none;\">" +
+    "Open UPI Payment" +
+    "</a>" +
+    "<br><br>" +
+    "UPI ID: <strong>" + UPI_ID + "</strong>";
+
+  const paymentBtn =
+    document.getElementById("paymentBtn");
+
+  paymentBtn.parentNode.appendChild(box);
+}
+
+
+// ================= ALERTS =================
+
+function showSuccess(message) {
+
+  clearAlerts();
+
+  const alert =
+    document.getElementById("successAlert");
+
+  alert.textContent = message;
+  alert.style.display = "block";
+
+  alert.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+
+function showError(message) {
+
+  clearAlerts();
+
+  const alert =
+    document.getElementById("errorAlert");
+
+  alert.textContent = message;
+  alert.style.display = "block";
+
+  alert.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+
+function clearAlerts() {
+
+  const success =
+    document.getElementById("successAlert");
+
+  const error =
+    document.getElementById("errorAlert");
+
+  if (success) success.style.display = "none";
+  if (error) error.style.display = "none";
+}
+
+
+// ================= RESET =================
+
+function resetForm() {
+
+  const form =
+    document.getElementById("orderForm");
+
+  if (form) form.reset();
+
+  selectedFile = null;
+
+  const fileItem =
+    document.getElementById("fileItem");
+
+  if (fileItem) fileItem.style.display = "none";
+
+  const fallback =
+    document.getElementById("upiFallback");
+
+  if (fallback) fallback.remove();
+
+  document.getElementById("copiesInput").value = 1;
+
+  document.getElementById("summaryService").textContent =
+    "Select a service";
+
+  document.getElementById("summaryPrice").textContent =
+    "₹0";
+
+  document.getElementById("summaryQuantity").textContent =
+    "1";
+
+  document.getElementById("totalAmount").textContent =
+    "₹0";
+
+  selectedService = null;
+  selectedPrice = 0;
+
+  document.querySelectorAll(".service-btn").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  const paymentBtn =
+    document.getElementById("paymentBtn");
+
+  if (paymentBtn) {
+    paymentBtn.disabled = true;
+    paymentBtn.textContent = "Pay & Place Order";
+  }
+}
+
+
+// ================= START =================
+
+document.addEventListener("DOMContentLoaded", function() {
+
+  const fileInput =
+    document.getElementById("fileInput");
+
+  if (fileInput) {
+    fileInput.addEventListener(
+      "change",
+      handleFileUpload
+    );
+  }
+
+  const copiesInput =
+    document.getElementById("copiesInput");
+
+  if (copiesInput) {
+    copiesInput.addEventListener(
+      "input",
+      calculatePrice
+    );
+  }
+
+  const orderForm =
+    document.getElementById("orderForm");
+
+  if (orderForm) {
+    orderForm.addEventListener(
+      "submit",
+      function(event) {
+        event.preventDefault();
+        initiatePayment();
+      }
+    );
+  }
+
+  calculatePrice();
+
+});
+</script>
+
 
 </body>
 </html>
